@@ -7,7 +7,11 @@ ADD requirements.txt /app
 WORKDIR /app
 
 RUN pip install -r requirements.txt
-RUN /usr/local/bin/python3 test_example_plugin.py
+
+RUN mkdir /htmlcov
+RUN pip install coverage
+RUN /usr/local/bin/python3 -m coverage run test_example_plugin.py
+RUN /usr/local/bin/python3 -m coverage html -d /htmlcov
 
 VOLUME /config
 
