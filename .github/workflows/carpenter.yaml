@@ -1,0 +1,21 @@
+name: Carpentry
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+      - name: carpenter build
+        uses: arcalot/arcaflow-plugin-image-builder
+      - name: whose workspace
+        run: |
+          echo ${{ github.workspace }}
+          echo $GITHUB_WORKSPACE
+
+
