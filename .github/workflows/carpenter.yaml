@@ -2,20 +2,30 @@ name: Carpentry
 on:
   push:
     branches:
-      - main
+      - gha-test
   pull_request:
+env:
+  # REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+  # PASSWORD_ENVVAR: "GITHUB_PASSWORD"
+  # USERNAME_ENVVAR: "GITHUB_USERNAME"
+  # GITHUB_USERNAME: ${{ github.actor }}
+  # GITHUB_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+  QUAY_USERNAME: "mleader+carpenter"
+  QUAY_PASSWORD: ${{ secrets.QUAY_ROBOT_PASSWORD }}
 jobs:
-  build:
-    name: Build
+  carpenter-build:
+    name: build
     runs-on: ubuntu-latest
     steps:
-      - name: Check out code
+      - name: Checkout
         uses: actions/checkout@v3
+      # - name: pull carpenter
+      #   run: docker pull ghcr.io/mfleader/arcaflow-plugin-image-builder:gh-container-axn
       - name: carpenter build
-        uses: arcalot/arcaflow-plugin-image-builder
-      - name: whose workspace
-        run: |
-          echo ${{ github.workspace }}
-          echo $GITHUB_WORKSPACE
+        # run: docker run --rm -v /var/run/docker.sock:/var/run/docker.sock:z -v ${{ github.workspace }}:/github/workspace ghcr.io/mfleader/arcaflow-plugin-image-builder:gh-container-axn /carpenter build >> $GITHUB_STEP_SUMMARY
+        uses: mfleader/arcaflow-plugin-image-builder@gh-container-axn
+        with:
+          args: build --build --push
 
 
