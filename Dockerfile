@@ -18,7 +18,6 @@ RUN /usr/local/bin/python3 -m coverage html -d /htmlcov
 VOLUME /config
 
 ENTRYPOINT ["/usr/local/bin/python3", "/app/example_plugin.py"]
-# CMD ["-f", "/config/example.yaml"]
 CMD []
 
 LABEL org.opencontainers.image.source="https://github.com/arcalot/arcaflow-plugin-template-python"
