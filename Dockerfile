@@ -12,12 +12,12 @@ RUN pip3 install -r requirements.txt
 
 RUN mkdir /htmlcov
 RUN pip3 install coverage
-RUN /usr/local/bin/python3 -m coverage run test_example_plugin.py
-RUN /usr/local/bin/python3 -m coverage html -d /htmlcov
+RUN python3 -m coverage run test_example_plugin.py
+RUN python3 -m coverage html -d /htmlcov
 
 VOLUME /config
 
-ENTRYPOINT ["/usr/local/bin/python3", "/app/example_plugin.py"]
+ENTRYPOINT ["python3", "/app/example_plugin.py"]
 CMD []
 
 LABEL org.opencontainers.image.source="https://github.com/arcalot/arcaflow-plugin-template-python"
