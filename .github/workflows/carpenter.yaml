@@ -2,7 +2,7 @@ name: Carpentry
 on:
   push:
     branches:
-      - gha-test
+      - main
   pull_request:
 env:
   IMAGE_NAME: arcaflow-plugin-template-python
@@ -17,7 +17,7 @@ jobs:
       - name: Checkout this project
         uses: actions/checkout@v3
       - name: carpenter build
-        uses: mfleader/arcaflow-plugin-image-builder@gh-container-axn
+        uses: arcalot/arcaflow-plugin-image-builder
         with:
           args: build --build --push
 
