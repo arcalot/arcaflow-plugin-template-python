@@ -34,8 +34,6 @@ class ErrorOutput:
     error: str
 
 
-# The following is a decorator (starting with @). We add this in front of our
-# function to define the metadata for our step.
 @plugin.step(
     id="hello-world",
     name="Hello world!",
