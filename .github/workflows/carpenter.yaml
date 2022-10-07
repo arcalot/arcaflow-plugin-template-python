@@ -20,5 +20,3 @@ jobs:
         uses: arcalot/arcaflow-plugin-image-builder
         with:
           args: build --build --push
-
-
