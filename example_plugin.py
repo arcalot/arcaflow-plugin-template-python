@@ -43,8 +43,8 @@ class ErrorOutput:
 def hello_world(
     params: InputParams,
 ) -> typing.Tuple[str, typing.Union[SuccessOutput, ErrorOutput]]:
-    """The function  is the implementation for the step. It needs the decorator
-    above to make it into a  step. The type hints for the params are required.
+    """The function is the implementation for the step. It needs the decorator
+    above to make it into a step. The type hints for the params are required.
 
     :param params:
 
