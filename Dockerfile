@@ -2,7 +2,7 @@ FROM quay.io/centos/centos:stream8
 
 RUN dnf -y module install python39 && dnf -y install python39 python39-pip
 RUN mkdir /app
-ADD https://raw.githubusercontent.com/arcalot/arcaflow-plugins/main/LICENSE /app
+ADD https://raw.githubusercontent.com/arcalot/arcaflow-plugin-template-python/main/LICENSE /app
 ADD example_plugin.py /app
 ADD test_example_plugin.py /app
 ADD requirements.txt /app
