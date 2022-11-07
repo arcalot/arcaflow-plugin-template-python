@@ -9,13 +9,13 @@ ADD poetry.lock /app/
 ADD pyproject.toml /app/
 ADD example_plugin.py /app/
 ADD test_example_plugin.py /app/
+RUN chmod +x /app/example_plugin.py /app/test_example_plugin.py
 WORKDIR /app
 
 RUN pip3 install poetry
 RUN poetry config virtualenvs.create false
 RUN poetry install --without dev
-USER 1000
-RUN /plugin/test_example_plugin.py
+RUN /app/test_example_plugin.py
 
 RUN mkdir /htmlcov
 RUN pip3 install coverage
