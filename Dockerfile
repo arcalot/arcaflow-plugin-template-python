@@ -31,4 +31,3 @@ LABEL org.opencontainers.image.vendor="Arcalot project"
 LABEL org.opencontainers.image.authors="Arcalot contributors"
 LABEL org.opencontainers.image.title="Python Plugin Template"
 LABEL io.github.arcalot.arcaflow.plugin.version="1"
-LABEL quay.expires-after=
