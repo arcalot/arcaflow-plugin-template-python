@@ -4,11 +4,11 @@ RUN dnf -y module install python39 && dnf -y install python39 python39-pip
 RUN mkdir /app \
  && chmod 700 /app
 ADD https://raw.githubusercontent.com/arcalot/arcaflow-plugin-template-python/main/LICENSE /app/
-ADD README.md /app/
-ADD poetry.lock /app/
-ADD pyproject.toml /app/
-ADD example_plugin.py /app/
-ADD test_example_plugin.py /app/
+COPY README.md /app/
+COPY poetry.lock /app/
+COPY pyproject.toml /app/
+COPY example_plugin.py /app/
+COPY test_example_plugin.py /app/
 WORKDIR /app
 
 RUN python3.9 -m pip install poetry \
@@ -31,3 +31,4 @@ LABEL org.opencontainers.image.vendor="Arcalot project"
 LABEL org.opencontainers.image.authors="Arcalot contributors"
 LABEL org.opencontainers.image.title="Python Plugin Template"
 LABEL io.github.arcalot.arcaflow.plugin.version="1"
+LABEL quay.expires-after=
