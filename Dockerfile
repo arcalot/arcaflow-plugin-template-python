@@ -17,8 +17,8 @@ RUN python3.9 -m pip install poetry \
 
 RUN mkdir /htmlcov \
  && python3.9 -m pip install coverage \
- && python3 -m coverage run test_example_plugin.py \
- && python3 -m coverage html -d /htmlcov --omit=/usr/local/*
+ && python3.9 -m coverage run test_example_plugin.py \
+ && python3.9 -m coverage html -d /htmlcov --omit=/usr/local/*
 
 VOLUME /config
 
