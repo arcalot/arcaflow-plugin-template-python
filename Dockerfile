@@ -16,7 +16,7 @@ RUN python3.9 -m pip install poetry \
  && python3.9 -m poetry install --without dev \
  && python3.9 -m poetry export -f requirements.txt --output requirements.txt --without-hashes
 
-RUN mkdir /htmlcov \
+RUN mkdir ./htmlcov \
  && python3.9 -m pip install coverage \
  && python3.9 -m coverage run test_example_plugin.py \
  && python3.9 -m coverage html -d /htmlcov --omit=/usr/local/*
@@ -28,8 +28,10 @@ RUN dnf -y module install python39 && dnf -y install python39 python39-pip
 RUN mkdir /app \
  && chmod 700 /app
 
+RUN mkdir /htmlcov
+
 COPY --from=builder /app/requirements.txt /app/
-COPY --from=builder /htmlcov /app/
+COPY --from=builder /app/htmlcov/ /htmlcov/
 COPY LICENSE /app/
 COPY README.md /app/
 COPY example_plugin.py /app/
