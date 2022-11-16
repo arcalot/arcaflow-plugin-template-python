@@ -4,6 +4,8 @@ FROM python:3.9 AS builder
 RUN mkdir /app \
  && chmod 700 /app
 
+COPY example_plugin.py /app/
+COPY test_example_plugin.py /app/
 COPY poetry.lock /app/
 COPY pyproject.toml /app/
 
@@ -14,6 +16,11 @@ RUN python3.9 -m pip install poetry \
  && python3.9 -m poetry install --without dev \
  && python3.9 -m poetry export -f requirements.txt --output requirements.txt --without-hashes
 
+RUN mkdir /htmlcov \
+ && python3.9 -m pip install coverage \
+ && python3.9 -m coverage run test_example_plugin.py \
+ && python3.9 -m coverage html -d /htmlcov --omit=/usr/local/*
+
 # run stage
 FROM quay.io/centos/centos:stream8
 
@@ -22,18 +29,14 @@ RUN mkdir /app \
  && chmod 700 /app
 
 COPY --from=builder /app/requirements.txt /app/
+COPY --from=builder /htmlcov /app/
 COPY LICENSE /app/
 COPY README.md /app/
 COPY example_plugin.py /app/
-COPY test_example_plugin.py /app/
+
 WORKDIR /app
 
 RUN pip3 install -r requirements.txt
-
-RUN mkdir /htmlcov \
- && python3.9 -m pip install coverage \
- && python3.9 -m coverage run test_example_plugin.py \
- && python3.9 -m coverage html -d /htmlcov --omit=/usr/local/*
 
 VOLUME /config
 
