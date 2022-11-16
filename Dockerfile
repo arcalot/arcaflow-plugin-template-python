@@ -19,7 +19,7 @@ RUN python3.9 -m pip install poetry \
 RUN mkdir ./htmlcov \
  && python3.9 -m pip install coverage \
  && python3.9 -m coverage run test_example_plugin.py \
- && python3.9 -m coverage html -d /htmlcov --omit=/usr/local/*
+ && python3.9 -m coverage html -d ./htmlcov --omit=/usr/local/*
 
 # run stage
 FROM quay.io/centos/centos:stream8
