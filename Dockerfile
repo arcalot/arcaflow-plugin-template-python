@@ -10,6 +10,7 @@ COPY pyproject.toml /app/
 
 RUN python3.9 -m pip install poetry \
  && python3.9 -m poetry config virtualenvs.in-project true \
+ && python3.9 -m poetry config virtualenvs.options.always-copy true \
  && python3.9 -m poetry install --without dev
 
 
