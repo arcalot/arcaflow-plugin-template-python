@@ -3,7 +3,6 @@ FROM quay.io/centos/centos:stream8 as poetry
 
 RUN dnf -y module install python39 && dnf -y install python39 python39-pip
 
-ENV PYTHONUNBUFFERED=true
 WORKDIR /app
 
 COPY poetry.lock /app/
@@ -30,6 +29,8 @@ RUN mkdir /htmlcov \
 
 # final image
 FROM quay.io/centos/centos:stream8
+
+ENV PYTHONUNBUFFERED=true
 
 RUN dnf -y module install python39
 
