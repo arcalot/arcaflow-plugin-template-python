@@ -9,21 +9,19 @@ COPY poetry.lock /app/
 COPY pyproject.toml /app/
 
 RUN python3.9 -m pip install poetry \
- && python3.9 -m poetry config virtualenvs.in-project true \
- && python3.9 -m poetry config virtualenvs.options.always-copy true \
- && python3.9 -m poetry install --without dev
+ && python3.9 -m poetry config virtualenvs.create false \
+ && python3.9 -m poetry install --without dev \
+ && python3.9 -m poetry export -f requirements.txt --output requirements.txt --without-hashes
 
 
-# coverage test using poetry venv
+# coverage test
 FROM poetry as coverage
 
 COPY example_plugin.py /app/
 COPY test_example_plugin.py /app/
 
-ENV PATH="/app/.venv/bin:$PATH"
-
 RUN mkdir /htmlcov \
- && python3.9 -m pip install coverage \
+ && python3.9 -m pip install coverage -r requirements.txt \
  && python3.9 -m coverage run test_example_plugin.py \
  && python3.9 -m coverage html -d /htmlcov --omit=/usr/local/*
 
@@ -31,22 +29,19 @@ RUN mkdir /htmlcov \
 # final image
 FROM quay.io/centos/centos:stream8
 
-ENV PYTHONUNBUFFERED=true
-
-RUN dnf -y module install python39
+RUN dnf -y module install python39 && dnf -y install python39 python39-pip
 
 WORKDIR /app
 
-COPY --from=poetry /app/ /app/
+COPY --from=poetry /app/requirements.txt /app/
 COPY --from=coverage /htmlcov /htmlcov/
-
-ENV PATH="/app/.venv/bin:$PATH"
-
 COPY LICENSE /app/
 COPY README.md /app/
 COPY example_plugin.py /app/
 
-ENTRYPOINT ["/app/.venv/bin/python3", "/app/example_plugin.py"]
+RUN pip3 install -r requirements.txt
+
+ENTRYPOINT ["python3", "/app/example_plugin.py"]
 CMD []
 
 LABEL org.opencontainers.image.source="https://github.com/arcalot/arcaflow-plugin-template-python"
