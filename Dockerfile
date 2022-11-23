@@ -17,8 +17,12 @@ RUN python3.9 -m pip install poetry \
 COPY example_plugin.py /app/
 COPY test_example_plugin.py /app/
 
-RUN pip3 install -r requirements.txt \
- && python3.9 -m unittest test_example_plugin.py
+RUN python3.9 -m pip install -r requirements.txt
+
+RUN mkdir /htmlcov
+RUN pip3 install coverage
+RUN python3 -m coverage run test_example_plugin.py
+RUN python3 -m coverage html -d /htmlcov --omit=/usr/local/*
 
 
 # final image
@@ -29,11 +33,12 @@ RUN dnf -y module install python39 && dnf -y install python39 python39-pip
 WORKDIR /app
 
 COPY --from=poetry /app/requirements.txt /app/
+COPY --from=poetry /htmlcov /htmlcov/
 COPY LICENSE /app/
 COPY README.md /app/
 COPY example_plugin.py /app/
 
-RUN pip3 install -r requirements.txt
+RUN python3.9 -m pip install -r requirements.txt
 
 ENTRYPOINT ["python3", "/app/example_plugin.py"]
 CMD []
