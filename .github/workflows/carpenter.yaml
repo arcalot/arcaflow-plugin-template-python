@@ -1,4 +1,4 @@
-name: Carpentry Push
+name: Carpenter
 on:
   push:
     branches:
