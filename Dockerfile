@@ -17,8 +17,6 @@ RUN python3.9 -m pip install poetry \
 COPY example_plugin.py /app/
 COPY test_example_plugin.py /app/
 
-RUN python3.9 -m pip install -r requirements.txt
-
 RUN mkdir /htmlcov
 RUN pip3 install coverage
 RUN python3 -m coverage run test_example_plugin.py
@@ -49,4 +47,3 @@ LABEL org.opencontainers.image.vendor="Arcalot project"
 LABEL org.opencontainers.image.authors="Arcalot contributors"
 LABEL org.opencontainers.image.title="Python Plugin Template"
 LABEL io.github.arcalot.arcaflow.plugin.version="1"
-
