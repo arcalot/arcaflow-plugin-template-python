@@ -14,8 +14,8 @@ RUN python3.9 -m pip install poetry \
  && python3.9 -m poetry export -f requirements.txt --output requirements.txt --without-hashes
 
 # run tests
-COPY example_plugin.py /app/
-COPY test_example_plugin.py /app/
+COPY arcaflow_plugin_template_python/example_plugin.py /app/
+COPY tests/test_example_plugin.py /app/
 
 RUN mkdir /htmlcov
 RUN pip3 install coverage

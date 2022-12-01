@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 import unittest
-import example_plugin
+from arcaflow_plugin_template_python import example_plugin
 from arcaflow_plugin_sdk import plugin
 
 
