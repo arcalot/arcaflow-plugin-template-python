@@ -8,4 +8,4 @@ on:
       - published
 jobs:
   carpenter:
-    uses: jdowni000/arcaflow-reusable-workflows/.github/workflows/carpenter.yaml@create
+    uses: arcalot/arcaflow-reusable-workflows/.github/workflows/carpenter.yaml@main
