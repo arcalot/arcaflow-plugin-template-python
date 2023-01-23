@@ -11,7 +11,7 @@ jobs:
     uses: jdowni000/arcaflow-reusable-workflows/.github/workflows/carpenter.yaml@refactor
     with:
       IMAGE_NAME: ${{ github.event.repository.name }}
-      IMAGE_TAG: 'latest'
+      IMAGE_TAG: 'test'
       QUAY_IMG_EXP: 'never'
       GITHUB_USERNAME: ${{ github.actor }}
       GITHUB_NAMESPACE: ${{ github.repository_owner }}
