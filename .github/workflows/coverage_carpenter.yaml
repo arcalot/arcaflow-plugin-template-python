@@ -1,0 +1,47 @@
+name: Testing_Coverage_Carpenter
+on:
+  push:
+    branches:
+      - "**"
+  pull_request:
+    types:
+      - opened
+      - reopened
+  release:
+    types:
+      - published
+
+jobs:
+  build:
+    name: Testing and Coverage
+    runs-on: ubuntu-latest
+    steps:
+
+    - uses: actions/checkout@v1
+
+    - name: Coverage
+      run: |
+        python -m venv .venv
+        source .venv/bin/activate
+        pip install poetry
+        pip install coveralls
+        poetry install --without dev 
+        coverage run tests/test_plugin.py
+        coverage lcov -o ./coverage/lcov.info
+
+    - name: Coveralls
+      uses: coverallsapp/github-action@master
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+
+  carpenter:
+    name: Carpenter
+    needs: [build]
+    uses: arcalot/arcaflow-reusable-workflows/.github/workflows/carpenter.yaml@main
+    with:
+      image_name: ${{ github.event.repository.name }}
+      image_tag: 'latest'
+      quay_img_exp: 'never'
+      github_username: ${{ github.actor }}
+      github_namespace: ${{ github.repository_owner }}
+    secrets: inherit

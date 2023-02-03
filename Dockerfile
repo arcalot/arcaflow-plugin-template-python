@@ -15,16 +15,6 @@ RUN python3.9 -m pip install poetry \
  && python3.9 -m poetry install --without dev \
  && python3.9 -m poetry export -f requirements.txt --output requirements.txt --without-hashes
 
-# run tests
-COPY ${package}/ /app/${package}
-COPY tests /app/tests
-
-RUN mkdir /htmlcov
-RUN pip3 install coverage
-RUN python3 -m coverage run tests/test_example_plugin.py
-RUN python3 -m coverage html -d /htmlcov --omit=/usr/local/*
-
-
 # final image
 FROM quay.io/centos/centos:stream8
 ARG package
@@ -33,7 +23,6 @@ RUN dnf -y module install python39 && dnf -y install python39 python39-pip
 WORKDIR /app
 
 COPY --from=poetry /app/requirements.txt /app/
-COPY --from=poetry /htmlcov /htmlcov/
 COPY LICENSE /app/
 COPY README.md /app/
 COPY ${package}/ /app/${package}
