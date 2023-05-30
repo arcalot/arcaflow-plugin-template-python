@@ -42,7 +42,7 @@ RUN python3.9 -m pip install -r requirements.txt
 
 WORKDIR /app/${package}
 
-ENTRYPOINT ["python3", "arcaflow_plugin_template_python.py"]
+ENTRYPOINT ["python3", "-m", "arcaflow_plugin_template_python"]
 CMD []
 
 LABEL org.opencontainers.image.source="https://github.com/arcalot/arcaflow-plugin-template-python"
