@@ -4,7 +4,7 @@ version = "0.1.0"
 description = ""
 authors = ["Arcalot"]
 license = "Apache-2.0+GPL-2.0-only"
-
+classifiers = ["Arcaflow :: Python Deployer :: Runnable"]
 packages = [
    { include="arcaflow_plugin_template_python.py", from="./arcaflow_plugin_template_python"  },
 ]
