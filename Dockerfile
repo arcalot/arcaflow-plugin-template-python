@@ -10,10 +10,10 @@ WORKDIR /app
 COPY poetry.lock /app/
 COPY pyproject.toml /app/
 
-RUN python3.9 -m pip install poetry==1.4.2
-RUN python3.9 -m poetry config virtualenvs.create false
-RUN python3.9 -m poetry install --without dev --no-root
-RUN python3.9 -m poetry export -f requirements.txt --output requirements.txt --without-hashes
+RUN python3.9 -m pip install poetry==1.4.2 \
+ && python3.9 -m poetry config virtualenvs.create false \
+ && python3.9 -m poetry install --without dev --no-root \
+ && python3.9 -m poetry export -f requirements.txt --output requirements.txt --without-hashes
 
 # run tests
 COPY ${package}/ /app/${package}
@@ -23,9 +23,9 @@ ENV PYTHONPATH /app/${package}
 WORKDIR /app/${package}
 
 RUN mkdir /htmlcov
-RUN python3.9 -m pip install coverage==7.2.7
-RUN python3.9 -m coverage run tests/test_${package}.py
-RUN python3.9 -m coverage html -d /htmlcov --omit=/usr/local/*
+RUN python3.9 -m pip install coverage==7.2.7 \
+ && python3.9 -m coverage run tests/test_${package}.py \
+ && python3.9 -m coverage html -d /htmlcov --omit=/usr/local/*
 
 
 # final image
