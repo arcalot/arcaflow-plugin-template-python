@@ -1,22 +1,26 @@
+# Package path for this plugin module relative to the repo root
 ARG package=arcaflow_plugin_template_python
 
 # STAGE 1 -- Build module dependencies and run tests
+# The 'poetry' and 'coverage' modules are installed and verson-controlled in the
+# quay.io/arcalot/arcaflow-plugin-baseimage-python-buildbase image to limit drift
 FROM quay.io/arcalot/arcaflow-plugin-baseimage-python-buildbase as build
 ARG package
 
 COPY poetry.lock /app/
 COPY pyproject.toml /app/
 
+# Convert the dependencies from poetry to a static requirements.txt file
 RUN python3.9 -m poetry install --without dev --no-root \
  && python3.9 -m poetry export -f requirements.txt --output requirements.txt --without-hashes
 
-# run tests
 COPY ${package}/ /app/${package}
 COPY tests /app/${package}/tests
 
 ENV PYTHONPATH /app/${package}
 WORKDIR /app/${package}
 
+# Run tests and return coverage analysis
 RUN python3.9 -m coverage run tests/test_${package}.py \
  && python3.9 -m coverage html -d /htmlcov --omit=/usr/local/*
 
@@ -31,6 +35,7 @@ COPY LICENSE /app/
 COPY README.md /app/
 COPY ${package}/ /app/${package}
 
+# Install all plugin dependencies from the generated requirements.txt file
 RUN python3.9 -m pip install -r requirements.txt
 
 WORKDIR /app/${package}
