@@ -22,7 +22,7 @@ class HelloWorldTest(unittest.TestCase):
     def test_functional(self):
         input = arcaflow_plugin_template_python.InputParams(name="Example Joe")
 
-        output_id, output_data = arcaflow_plugin_template_python.hello_world(input)
+        output_id, output_data = arcaflow_plugin_template_python.hello_world(params=input, run_id="plugin_ci")
 
         # The example plugin always returns an error:
         self.assertEqual("success", output_id)
