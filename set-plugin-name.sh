@@ -17,7 +17,7 @@ for file in $(find . -type f -name '*template_python*'); do
 done
 
 for name in template_python Template; do
-    for file in $(grep -rl $name *); do
+    for file in $(grep -rl $name * .github); do
         sed -i "s/$name/$1/g" $file
     done
 done
