@@ -1,6 +1,10 @@
 #!/bin/bash
 
-for file in $(find . -name '*template_python*'); do
+for file in $(find . -type d -name '*template_python*'); do
+    git mv "$file" "${file/template_python/$1}"
+done
+
+for file in $(find . -type f -name '*template_python*'); do
     git mv "$file" "${file/template_python/$1}"
 done
 
