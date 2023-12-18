@@ -1,5 +1,5 @@
 import sys
-from arcaflow_plugin_template_python import plugin
+from arcaflow_plugin_sdk import plugin
 from arcaflow_plugin_template_python import hello_world
 
 if __name__ == "__main__":
@@ -11,4 +11,3 @@ if __name__ == "__main__":
             )
         )
     )
-    
