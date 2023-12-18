@@ -1,6 +1,6 @@
 import sys
 from arcaflow_plugin_sdk import plugin
-from arcaflow_plugin_template_python.plugin_template_python import hello_world
+from arcaflow_plugin_template_python.plugin_template_python.plugin_template_python import hello_world
 
 
 
