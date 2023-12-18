@@ -1,26 +1,26 @@
 #!/usr/bin/env python3
 import unittest
-import template_python_plugin
-from arcaflow_plugin_sdk import plugin
+import arcaflow_template_python_plugin as plugin
+from arcaflow_plugin_sdk import plugin as plugin_sdk
 
 
 class HelloWorldTest(unittest.TestCase):
     @staticmethod
     def test_serialization():
-        plugin.test_object_serialization(template_python_plugin.InputParams("John Doe"))
+        plugin_sdk.test_object_serialization(plugin.InputParams("John Doe"))
 
-        plugin.test_object_serialization(
-            template_python_plugin.SuccessOutput("Hello, world!")
+        plugin_sdk.test_object_serialization(
+            plugin.SuccessOutput("Hello, world!")
         )
 
-        plugin.test_object_serialization(
-            template_python_plugin.ErrorOutput(error="This is an error")
+        plugin_sdk.test_object_serialization(
+            plugin.ErrorOutput(error="This is an error")
         )
 
     def test_functional(self):
-        input = template_python_plugin.InputParams(name="Example Joe")
+        input = plugin.InputParams(name="Example Joe")
 
-        output_id, output_data = template_python_plugin.hello_world(
+        output_id, output_data = plugin.hello_world(
             params=input, run_id="plugin_ci"
         )
 
@@ -28,7 +28,7 @@ class HelloWorldTest(unittest.TestCase):
         self.assertEqual("success", output_id)
         self.assertEqual(
             output_data,
-            template_python_plugin.SuccessOutput("Hello, Example Joe!"),
+            plugin.SuccessOutput("Hello, Example Joe!"),
         )
 
 
