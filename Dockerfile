@@ -15,10 +15,13 @@ RUN python -m poetry install --without dev --no-root \
  && python -m poetry export -f requirements.txt --output requirements.txt --without-hashes
 
 COPY ${package}/ /app/${package}
-COPY tests /app/${package}/tests
+COPY arcaflow_schema_template_python /app/arcaflow_schema_template_python
+COPY tests /app/tests
 
-ENV PYTHONPATH /app/${package}
-WORKDIR /app/${package}
+#ENV PYTHONPATH /app/${package}
+ENV PYTHONPATH /app
+WORKDIR /app/
+RUN ls
 
 # Run tests and return coverage analysis
 RUN python -m coverage run tests/test_${package}.py \
@@ -29,18 +32,20 @@ RUN python -m coverage run tests/test_${package}.py \
 FROM quay.io/arcalot/arcaflow-plugin-baseimage-python-osbase:0.3.1@sha256:0e9384416ad5dd8810c410a87c283ca29a368fc85592378b85261fce5f9ecbeb
 ARG package
 
+ENV PYTHONPATH /app
 COPY --from=build /app/requirements.txt /app/
 COPY --from=build /htmlcov /htmlcov/
 COPY LICENSE /app/
 COPY README.md /app/
 COPY ${package}/ /app/${package}
-
+COPY arcaflow_schema_template_python /app/arcaflow_schema_template_python
+RUN ls arcaflow_schema_template_python
 # Install all plugin dependencies from the generated requirements.txt file
 RUN python -m pip install -r requirements.txt
 
-WORKDIR /app/${package}
+WORKDIR /app
 
-ENTRYPOINT ["python", "arcaflow_plugin_template_python.py"]
+ENTRYPOINT ["python", "arcaflow_plugin_template_python/plugin_template_python.py"]
 CMD []
 
 LABEL org.opencontainers.image.source="https://github.com/arcalot/arcaflow-plugin-template-python"
