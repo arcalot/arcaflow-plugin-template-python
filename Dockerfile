@@ -15,10 +15,10 @@ RUN python -m poetry install --without dev --no-root \
  && python -m poetry export -f requirements.txt --output requirements.txt --without-hashes
 
 COPY ${package}/ /app/${package}
-COPY tests /app/${package}/tests
+COPY tests /app/tests
 
 ENV PYTHONPATH /app/${package}
-WORKDIR /app/${package}
+WORKDIR /app/
 
 # Run tests and return coverage analysis
 RUN python -m coverage run tests/test_${package}.py \
@@ -38,9 +38,9 @@ COPY ${package}/ /app/${package}
 # Install all plugin dependencies from the generated requirements.txt file
 RUN python -m pip install -r requirements.txt
 
-WORKDIR /app/${package}
+WORKDIR /app
 
-ENTRYPOINT ["python", "template_python_plugin.py"]
+ENTRYPOINT ["python", "-m", "arcaflow_plugin_template_python"]
 CMD []
 
 LABEL org.opencontainers.image.source="https://github.com/arcalot/arcaflow-plugin-template-python"
