@@ -12,13 +12,13 @@ Says hello :)
 ### Input
 
 <table><tbody>
-<tr><th>Type:</th><td><code style="white-space: nowrap">scope</code></td><tr><th>Root object:</th><td>InputParams</td></tr>
-<tr><th>Properties</th><td><details><summary>name (<code style="white-space: nowrap">string</code>)</summary>
-                <table><tbody><tr><th>Required:</th><td>Yes</td></tr><tr><th>Type:</th><td><code style="white-space: nowrap">string</code></td><tr><th>Minimum length:</th><td>1</td></tr></tbody></table>
+<tr><th>Type:</th><td><code>scope</code></td><tr><th>Root object:</th><td>InputParams</td></tr>
+<tr><th>Properties</th><td><details><summary>name (<code>string</code>)</summary>
+                <table><tbody><tr><th>Required:</th><td>Yes</td></tr><tr><th>Type:</th><td><code>string</code></td><tr><th>Minimum length:</th><td>1</td></tr></tbody></table>
             </details></td></tr>
-<tr><td colspan="2"><details><summary><strong>Objects</strong></summary><details><summary>InputParams (<code style="white-space: nowrap">object</code>)</summary>
-            <table><tbody><tr><th>Type:</th><td><code style="white-space: nowrap">object</code></td><tr><th>Properties</th><td><details><summary>name (<code style="white-space: nowrap">string</code>)</summary>
-        <table style="width:100%"><tbody><tr><th>Required:</th><td>Yes</td></tr><tr><th>Type:</th><td><code style="white-space: nowrap">string</code></td><tr><th>Minimum length:</th><td>1</td></tr></tbody></table>
+<tr><td colspan="2"><details><summary><strong>Objects</strong></summary><details><summary>InputParams (<code>object</code>)</summary>
+            <table><tbody><tr><th>Type:</th><td><code>object</code></td><tr><th>Properties</th><td><details><summary>name (<code>string</code>)</summary>
+        <table><tbody><tr><th>Required:</th><td>Yes</td></tr><tr><th>Type:</th><td><code>string</code></td><tr><th>Minimum length:</th><td>1</td></tr></tbody></table>
         </details></td></tr>
 </tbody></table>
         </details></details></td></tr>
@@ -30,13 +30,13 @@ Says hello :)
 #### error
 
 <table><tbody>
-<tr><th>Type:</th><td><code style="white-space: nowrap">scope</code></td><tr><th>Root object:</th><td>ErrorOutput</td></tr>
-<tr><th>Properties</th><td><details><summary>error (<code style="white-space: nowrap">string</code>)</summary>
-                <table><tbody><tr><th>Required:</th><td>Yes</td></tr><tr><th>Type:</th><td><code style="white-space: nowrap">string</code></td></tbody></table>
+<tr><th>Type:</th><td><code>scope</code></td><tr><th>Root object:</th><td>ErrorOutput</td></tr>
+<tr><th>Properties</th><td><details><summary>error (<code>string</code>)</summary>
+                <table><tbody><tr><th>Required:</th><td>Yes</td></tr><tr><th>Type:</th><td><code>string</code></td></tbody></table>
             </details></td></tr>
-<tr><td colspan="2"><details><summary><strong>Objects</strong></summary><details><summary>ErrorOutput (<code style="white-space: nowrap">object</code>)</summary>
-            <table><tbody><tr><th>Type:</th><td><code style="white-space: nowrap">object</code></td><tr><th>Properties</th><td><details><summary>error (<code style="white-space: nowrap">string</code>)</summary>
-        <table style="width:100%"><tbody><tr><th>Required:</th><td>Yes</td></tr><tr><th>Type:</th><td><code style="white-space: nowrap">string</code></td></tbody></table>
+<tr><td colspan="2"><details><summary><strong>Objects</strong></summary><details><summary>ErrorOutput (<code>object</code>)</summary>
+            <table><tbody><tr><th>Type:</th><td><code>object</code></td><tr><th>Properties</th><td><details><summary>error (<code>string</code>)</summary>
+        <table><tbody><tr><th>Required:</th><td>Yes</td></tr><tr><th>Type:</th><td><code>string</code></td></tbody></table>
         </details></td></tr>
 </tbody></table>
         </details></details></td></tr>
@@ -45,13 +45,13 @@ Says hello :)
 #### success
 
 <table><tbody>
-<tr><th>Type:</th><td><code style="white-space: nowrap">scope</code></td><tr><th>Root object:</th><td>SuccessOutput</td></tr>
-<tr><th>Properties</th><td><details><summary>message (<code style="white-space: nowrap">string</code>)</summary>
-                <table><tbody><tr><th>Required:</th><td>Yes</td></tr><tr><th>Type:</th><td><code style="white-space: nowrap">string</code></td></tbody></table>
+<tr><th>Type:</th><td><code>scope</code></td><tr><th>Root object:</th><td>SuccessOutput</td></tr>
+<tr><th>Properties</th><td><details><summary>message (<code>string</code>)</summary>
+                <table><tbody><tr><th>Required:</th><td>Yes</td></tr><tr><th>Type:</th><td><code>string</code></td></tbody></table>
             </details></td></tr>
-<tr><td colspan="2"><details><summary><strong>Objects</strong></summary><details><summary>SuccessOutput (<code style="white-space: nowrap">object</code>)</summary>
-            <table><tbody><tr><th>Type:</th><td><code style="white-space: nowrap">object</code></td><tr><th>Properties</th><td><details><summary>message (<code style="white-space: nowrap">string</code>)</summary>
-        <table style="width:100%"><tbody><tr><th>Required:</th><td>Yes</td></tr><tr><th>Type:</th><td><code style="white-space: nowrap">string</code></td></tbody></table>
+<tr><td colspan="2"><details><summary><strong>Objects</strong></summary><details><summary>SuccessOutput (<code>object</code>)</summary>
+            <table><tbody><tr><th>Type:</th><td><code>object</code></td><tr><th>Properties</th><td><details><summary>message (<code>string</code>)</summary>
+        <table><tbody><tr><th>Required:</th><td>Yes</td></tr><tr><th>Type:</th><td><code>string</code></td></tbody></table>
         </details></td></tr>
 </tbody></table>
         </details></details></td></tr>
