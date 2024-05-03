@@ -19,6 +19,7 @@ jobs:
       QUAY_PASSWORD: ${{ secrets.QUAY_PASSWORD }}
 
   docsgen:
+    if: github.ref != 'refs/heads/main' && github.event_name != 'release'
     needs: act
     uses: arcalot/arcaflow-docsgen/.github/workflows/reusable_workflow.yaml@main
     permissions:
